@@ -39,6 +39,8 @@ To test an individual file, run
 
 ```bash
 python -m cioos_iso_validate sample_records/valid.xml
+# or just validate ISO 19115-3 without the CIOOS component:
+python -m cioos_iso_validate sample_records/valid.xml --level schema
 ```
 
 ## Development

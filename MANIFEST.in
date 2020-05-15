@@ -1,0 +1,3 @@
+include cioos_iso_validate/catalog.xsd
+include cioos_iso_validate/schematron/cioos.sch
+recursive-include cioos_iso_validate/schema *.xsd

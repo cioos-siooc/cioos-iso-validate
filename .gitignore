@@ -1,0 +1,9 @@
+notforrepo
+.vscode
+__pycache__
+*.egg-info
+schema
+build
+venv
+.*_cache
+.github

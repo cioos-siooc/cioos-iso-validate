@@ -15,9 +15,9 @@ There can't be multiple error types, will be just one of them
 '''
 
 from typing import List
-from .xml import xml_validate
-from .xsd import xsd_validate
-from .schematron import schematron_validate
+from cioos_iso_validate.xml_validate import xml_validate
+from cioos_iso_validate.xsd_validate import xsd_validate
+from cioos_iso_validate.schematron_validate import schematron_validate
 
 
 def validate(xml_str: str, level: str = 'cioos') -> List[dict]:

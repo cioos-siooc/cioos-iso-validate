@@ -1,3 +1,4 @@
+from typing import List
 from lxml import etree
 '''
 
@@ -6,7 +7,7 @@ This stage just tests for well formed XML
 '''
 
 
-def XMLValidate(xml_str: str) -> []:
+def XMLValidate(xml_str: str) -> List[dict]:
     try:
         etree.fromstring(xml_str)
         return []

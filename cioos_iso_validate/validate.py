@@ -14,12 +14,13 @@ There can't be multiple error types, will be just one of them
 
 '''
 
+from typing import List
 from .xml import XMLValidate
 from .xsd import XSDValidate
 from .schematron import SchematronValidate
 
 
-def validate(xml_str: str, level: str = 'cioos') -> []:
+def validate(xml_str: str, level: str = 'cioos') -> List[dict]:
     '''
     Level will be 'xml', 'schema' or 'cioos'
     '''

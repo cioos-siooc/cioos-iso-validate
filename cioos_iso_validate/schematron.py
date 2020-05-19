@@ -3,6 +3,7 @@
 import re
 from lxml import (isoschematron, etree)
 from bs4 import BeautifulSoup
+from typing import List
 import os
 import json
 
@@ -79,7 +80,7 @@ def strip_path(path: str) -> str:
     return out.replace('[', '/')
 
 
-def SchematronValidate(xml_input: str) -> []:
+def SchematronValidate(xml_input: str) -> List[dict]:
     # Example adapted from http://lxml.de/validation.html#id2
 
     # Parse schema

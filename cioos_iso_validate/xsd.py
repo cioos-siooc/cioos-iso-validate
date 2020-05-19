@@ -1,4 +1,5 @@
 
+from typing import List
 from lxml import etree
 import os
 
@@ -25,7 +26,7 @@ if not os.path.isfile(catalog_path):
 os.environ['XML_CATALOG_FILES'] = catalog_path
 
 
-def XSDValidate(xml_to_validate: str) -> []:
+def XSDValidate(xml_to_validate: str) -> List[dict]:
     'Gets list of validation errors for this document'
     xmlschema = etree.parse(XSD_PATH)
     xsd_validator = etree.XMLSchema(xmlschema)

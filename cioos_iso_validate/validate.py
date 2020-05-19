@@ -15,9 +15,9 @@ There can't be multiple error types, will be just one of them
 '''
 
 from typing import List
-from .xml import XMLValidate
-from .xsd import XSDValidate
-from .schematron import SchematronValidate
+from .xml import xml_validate
+from .xsd import xsd_validate
+from .schematron import schematron_validate
 
 
 def validate(xml_str: str, level: str = 'cioos') -> List[dict]:
@@ -33,16 +33,16 @@ def validate(xml_str: str, level: str = 'cioos') -> List[dict]:
     xml_str = xml_str.encode()
 
     # Test 1  - try parsing the text as XML
-    xml_errors = XMLValidate(xml_str)
+    xml_errors = xml_validate(xml_str)
 
     if xml_errors or level == 'xml':
         return xml_errors
 
     # Test 2 - validate against ISO 19115-3 schema
-    xsd_errors = XSDValidate(xml_str)
+    xsd_errors = xsd_validate(xml_str)
 
     if xsd_errors or level == 'schema':
         return xsd_errors
 
     # Test 3 - validate against CIOOS schematron
-    return SchematronValidate(xml_str)
+    return schematron_validate(xml_str)

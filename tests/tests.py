@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
 import unittest
-import lxml
-from cioos_iso_validate.validate import (validate)
+from cioos_iso_validate.validate import validate
 
-basic_valid_schema = """<?xml version="1.0" encoding="UTF-8"?>
+BASIC_VALID_SCHEMA = """<?xml version="1.0" encoding="UTF-8"?>
                 <MD_Metadata xmlns="http://standards.iso.org/iso/19115/-3/mdb/2.0">
                     <contact></contact>
                     <dateInfo></dateInfo>
@@ -26,7 +25,7 @@ class TestValidationFunctions(unittest.TestCase):
         self.assertFalse(log)
 
     def test_valid_xsd(self):
-        log = validate(basic_valid_schema, level='schema')
+        log = validate(BASIC_VALID_SCHEMA, level='schema')
         self.assertFalse(log)
 
     def test_invalid_schema(self):
@@ -35,7 +34,7 @@ class TestValidationFunctions(unittest.TestCase):
         self.assertEqual(log[0]['type'], 'xsd')
 
     def test_invalid_cioos(self):
-        log = validate(basic_valid_schema)
+        log = validate(BASIC_VALID_SCHEMA)
         self.assertEqual(log[0]['type'], 'schematron')
 
 

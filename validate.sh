@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # This file is here just to demonstrate how you could use xmllint with this schema
+# Eg: `sh validate.sh sample_records/valid.xml`
+# NOTE: This doesn't use schematron so the CIOOS rules arent checked
 
 # get dir this script is in
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

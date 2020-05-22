@@ -56,9 +56,6 @@
 
             <sch:assert test="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue" />
             <sch:assert test="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party" />
-            <sch:assert test="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Individual/cit:name/gco:CharacterString" />
-            <sch:assert test="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Individual/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:country/gco:CharacterString" />
-            <sch:assert test="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Individual/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress/gco:CharacterString" />
 
             <sch:assert test="/mdb:MD_Metadata/mdb:dateInfo/cit:CI_Date/cit:date/gco:Date" />
             <sch:assert test="/mdb:MD_Metadata/mdb:dateInfo/cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeList" />
@@ -81,6 +78,23 @@
         <!-- These rules apply to all MD_CharacterSetCode, LanguageCode tags -->
         <sch:rule context="//lan:MD_CharacterSetCode">
             <sch:assert test="@codeListValue='utf8'">Encoding must be 'utf8'</sch:assert>
+        </sch:rule>
+
+        <sch:rule context="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party">
+            <sch:assert test="cit:CI_Individual or cit:CI_Organisation" />
+        </sch:rule>
+
+
+        <sch:rule context="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Individual">
+            <sch:assert test="cit:name/gco:CharacterString" />
+            <sch:assert test="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:country/gco:CharacterString" />
+            <sch:assert test="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress/gco:CharacterString" />
+        </sch:rule>
+
+        <sch:rule context="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation">
+            <sch:assert test="cit:name" />
+            <sch:assert test="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:country/gco:CharacterString" />
+            <sch:assert test="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress/gco:CharacterString" />
         </sch:rule>
 
         <sch:rule context="//lan:LanguageCode">
@@ -153,7 +167,7 @@
             <sch:assert test="lan:country/lan:CountryCode/@codeListValue" />
             <sch:assert test="lan:characterEncoding/lan:MD_CharacterSetCode/@codeList" />
         </sch:rule>
-        <!-- require EX_BoundingPolygon or EX_BoundingPolygon, or both  -->
+        <!-- require EX_BoundingPolygon or EX_GeographicBoundingBox, or both  -->
         <sch:rule context="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:geographicElement">
             <sch:assert test="gex:EX_BoundingPolygon or gex:EX_GeographicBoundingBox" />
         </sch:rule>
